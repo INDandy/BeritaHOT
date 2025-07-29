@@ -73,7 +73,9 @@ php artisan key:generate
 
 ## 4. Set database in file .env
  DB_DATABASE=your_db_name
+ 
  DB_USERNAME=your_db_user
+ 
  DB_PASSWORD=your_db_password
 
 ## 5. Run migrate
