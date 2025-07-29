@@ -60,9 +60,9 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-## <p> <a href="https://filamentphp.com" target="_blank"> <img src="https://img.shields.io/badge/Filament-Admin-blue?style=flat-square&logo=laravel" alt="Filament Admin Badge"> </a> </p>
+## <p align="center"> <a href="https://filamentphp.com" target="_blank"> <img src="https://img.shields.io/badge/Filament-Admin-blue?style=flat-square&logo=laravel" width="400" alt="Filament Admin Badge"> </a> </p>
 
-## 1. Install semua dependency
+## 1. Install Composer
 composer install
 
 ## 2. Copy file .env
@@ -71,15 +71,15 @@ cp .env.example .env
 ## 3. Generate key Laravel
 php artisan key:generate
 
-## 4. Set database di file .env
+## 4. Set database in file .env
  DB_DATABASE=your_db_name
  DB_USERNAME=your_db_user
  DB_PASSWORD=your_db_password
 
-## 5. Jalankan migrasi
+## 5. Run migrate
 php artisan migrate
 
-## 6. Jalankan seeder jika ada
+## 6. Run Seeder
 php artisan db:seed
 
 ## 7. Jalankan project
