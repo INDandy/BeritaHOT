@@ -62,29 +62,42 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## <p align="center"> <a href="https://filamentphp.com" target="_blank"> <img src="https://img.shields.io/badge/Filament-Admin-blue?style=flat-square&logo=laravel" width="400" alt="Filament Admin Badge"> </a> </p>
 
-## 1. Install Composer
+# Laravel Project Setup
+
+Step-by-step guide to set up and run this Laravel project locally.
+
+## Installation
+
+# 1. Install Composer dependencies
 composer install
 
-## 2. Copy file .env
+# 2. Copy the .env file
 cp .env.example .env
 
-## 3. Generate key Laravel
+# 3. Generate Laravel application key
 php artisan key:generate
 
-## 4. Set database in file .env
- DB_DATABASE=your_db_name
- 
- DB_USERNAME=your_db_user
- 
- DB_PASSWORD=your_db_password
+# 4. Configure your database in the .env file
+DB_DATABASE, 
 
-## 5. Run migrate
+DB_USERNAME, 
+
+DB_PASSWORD accordingly
+
+# 5. Run database migrations
 php artisan migrate
 
-## 6. Run Seeder
+# 6. Run database seeders
 php artisan db:seed
 
-## 7. Jalankan project
+# 7. Create storage symlink
+php artisan storage:link
+
+# 8. (Optional) Clear cache if needed
+php artisan config:clear
+php artisan cache:clear
+
+# 9. Start the Laravel development server
 php artisan serve
 
 ## Adding Admin user
