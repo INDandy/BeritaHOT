@@ -37,9 +37,11 @@
 						</div>
 					</div>
 				</div>
-                @empty
-                <p>No featured articles found</p>
-                @endforelse
+               @empty
+				<div class="w-full h-[550px] flex items-center justify-center">
+					<p class="text-gray-500 text-lg">No featured articles found</p>
+				</div>
+				@endforelse
 			</div>
 		</section>
 		<section id="Up-to-date" class="max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-[70px]">
@@ -126,7 +128,6 @@
 				
 			</div>
 			<div class="flex justify-between items-center h-fit">
-<<<<<<< HEAD
 							@if ($entertainment_featured_articles && $entertainment_featured_articles->thumbnail)
 								<div class="featured-news-card relative w-full h-[424px] flex flex-1 rounded-[20px] overflow-hidden">
 									<img src="{{ Storage::url($entertainment_featured_articles->thumbnail) }}" class="thumbnail absolute w-full h-full object-cover" alt="icon" />
@@ -149,16 +150,6 @@
 									<p class="text-gray-600">Belum ada artikel unggulan</p>
 								</div>
 							@endif
-=======
-				<div class="featured-news-card relative w-full h-[424px] flex flex-1 rounded-[20px] overflow-hidden">
-					<img src="{{ Storage::url($entertainment_featured_articles->thumbnail) }}" class="thumbnail absolute w-full h-full object-cover" alt="icon" />
-					<div class="w-full h-full bg-gradient-to-b from-[rgba(0,0,0,0)] to-[rgba(0,0,0,0.9)] absolute z-10"></div>
-					<div class="card-detail w-full flex items-end p-[30px] relative z-20">
-						<div class="flex flex-col gap-[10px]">
-							<p class="text-white">Featured</p>
-							<a href="details.html" class="font-bold text-[30px] leading-[36px] text-white hover:underline transition-all duration-300">{{ $entertainment_featured_articles->name }}</a>
-							<p class="text-white">{{ $entertainment_featured_articles->created_at->format('M d, Y') }}</p>
->>>>>>> 74dc3f9be9681766d0697b06cab4aed3a9f02a10
 						</div>
 					</div>
 				</div>
@@ -202,7 +193,6 @@
 				</h2>
 			</div>
 			<div class="flex justify-between items-center h-fit">
-<<<<<<< HEAD
 						@if ($business_featured_articles && $business_featured_articles->thumbnail)
 							<div class="featured-news-card relative w-full h-[424px] flex flex-1 rounded-[20px] overflow-hidden">
 								<img src="{{ Storage::url($business_featured_articles->thumbnail) }}" class="thumbnail absolute w-full h-full object-cover" alt="icon" />
@@ -225,17 +215,6 @@
 								<p class="text-gray-600">Belum ada artikel unggulan</p>
 							</div>
 						@endif
-=======
-				<div class="featured-news-card relative w-full h-[424px] flex flex-1 rounded-[20px] overflow-hidden">
-					<img src="{{Storage::url($business_featured_articles->thumbnail)}}" class="thumbnail absolute w-full h-full object-cover" alt="icon" />
-					<div class="w-full h-full bg-gradient-to-b from-[rgba(0,0,0,0)] to-[rgba(0,0,0,0.9)] absolute z-10"></div>
-					<div class="card-detail w-full flex items-end p-[30px] relative z-20">
-						<div class="flex flex-col gap-[10px]">
-							<p class="text-white">Featured</p>
-							<a href="details.html" class="font-bold text-[30px] leading-[36px] text-white hover:underline transition-all duration-300">{{$business_featured_articles->name}}</a>
-							<p class="text-white">{{$business_featured_articles->created_at->format('M d, Y')}}</p>
-						</div>
->>>>>>> 74dc3f9be9681766d0697b06cab4aed3a9f02a10
 					</div>
 				<div class="h-[424px] w-fit px-5 overflow-y-scroll overflow-x-hidden relative custom-scrollbar">
 					<div class="w-[455px] flex flex-col gap-5 shrink-0">
@@ -270,7 +249,6 @@
 				</h2>
 			</div>
 			<div class="flex justify-between items-center h-fit">
-<<<<<<< HEAD
 						@if ($automotive_featured_articles && $automotive_featured_articles->thumbnail)
 							<div class="featured-news-card relative w-full h-[424px] flex flex-1 rounded-[20px] overflow-hidden">
 								<img src="{{ Storage::url($automotive_featured_articles->thumbnail) }}" class="thumbnail absolute w-full h-full object-cover" alt="icon" />
@@ -293,19 +271,6 @@
 								<p class="text-gray-600">Belum ada artikel unggulan</p>
 							</div>
 						@endif
-=======
-				<div class="featured-news-card relative w-full h-[424px] flex flex-1 rounded-[20px] overflow-hidden">
-					<img src="{{Storage::url($automotive_featured_articles->thumbnail)}}" class="thumbnail absolute w-full h-full object-cover" alt="icon" />
-					<div class="w-full h-full bg-gradient-to-b from-[rgba(0,0,0,0)] to-[rgba(0,0,0,0.9)] absolute z-10"></div>
-					<div class="card-detail w-full flex items-end p-[30px] relative z-20">
-						<div class="flex flex-col gap-[10px]">
-							<p class="text-white">Featured</p>
-							<a href="details.html" class="font-bold text-[30px] leading-[36px] text-white hover:underline transition-all duration-300">
-                           {{ $automotive_featured_articles->name }}
-                            </a>
-							<p class="text-white">{{$automotive_featured_articles->created_at->format('M d, Y')}}</p>
-						</div>
->>>>>>> 74dc3f9be9681766d0697b06cab4aed3a9f02a10
 					</div>
 				<div class="h-[424px] w-fit px-5 overflow-y-scroll overflow-x-hidden relative custom-scrollbar">
 					<div class="w-[455px] flex flex-col gap-5 shrink-0">
