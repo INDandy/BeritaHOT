@@ -44,3 +44,6 @@ php artisan serve
 
 ## Adding Admin user
 php artisan make:filament-user
+
+#REMINDER
+##If the image won't load with errors on console, just copied your localhost path and change it in env
