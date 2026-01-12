@@ -124,180 +124,168 @@
 					Latest For You <br />
 					in Entertainment
 				</h2>
-				
-				
 			</div>
-			<div class="flex justify-between items-center h-fit">
-							@if ($entertainment_featured_articles && $entertainment_featured_articles->thumbnail)
-								<div class="featured-news-card relative w-full h-[424px] flex flex-1 rounded-[20px] overflow-hidden">
-									<img src="{{ Storage::url($entertainment_featured_articles->thumbnail) }}" class="thumbnail absolute w-full h-full object-cover" alt="icon" />
-									<div class="w-full h-full bg-gradient-to-b from-[rgba(0,0,0,0)] to-[rgba(0,0,0,0.9)] absolute z-10"></div>
-									<div class="card-detail w-full flex items-end p-[30px] relative z-20">
-										<div class="flex flex-col gap-[10px]">
-											<p class="text-white">Featured</p>
-											<a href="{{ route('article.detail', $entertainment_featured_articles->slug ?? '#') }}" 
-												class="font-bold text-[30px] leading-[36px] text-white hover:underline transition-all duration-300">
-												{{ $entertainment_featured_articles->name ?? '-' }}
-											</a>
-											<p class="text-white">
-												{{ $entertainment_featured_articles->created_at?->format('M d, Y') ?? '-' }}
-											</p>
-										</div>
-									</div>
-								</div>
-							@else
-								<div class="featured-news-card relative w-full h-[424px] flex flex-1 rounded-[20px] overflow-hidden bg-gray-300 justify-center items-center">
-									<p class="text-gray-600">Belum ada artikel unggulan</p>
-								</div>
-							@endif
+			<div class="flex gap-6 h-fit">
+				<!-- Left side: Featured Card -->
+				@if ($entertainment_featured_articles && $entertainment_featured_articles->thumbnail)
+					<div class="featured-news-card relative h-[424px] w-[calc(100%-500px)] flex-1 rounded-[20px] overflow-hidden">
+						<img src="{{ Storage::url($entertainment_featured_articles->thumbnail) }}" class="thumbnail absolute w-full h-full object-cover" alt="icon" />
+						<div class="w-full h-full bg-gradient-to-b from-[rgba(0,0,0,0)] to-[rgba(0,0,0,0.9)] absolute z-10"></div>
+						<div class="card-detail w-full flex items-end p-[30px] relative z-20">
+							<div class="flex flex-col gap-[10px]">
+								<p class="text-white">Featured</p>
+								<a href="{{ route('front.details', $entertainment_featured_articles->slug ?? '#') }}" 
+									class="font-bold text-[30px] leading-[36px] text-white hover:underline transition-all duration-300 two-lines">
+									{{ $entertainment_featured_articles->name ?? '-' }}
+								</a>
+								<p class="text-white">
+									{{ $entertainment_featured_articles->created_at?->format('M d, Y') ?? '-' }}
+								</p>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="h-[424px] w-fit px-5 overflow-y-scroll overflow-x-hidden relative custom-scrollbar">
-					<div class="w-[455px] flex flex-col gap-5 shrink-0">
-
-                    @forelse($entertainment_articles as $article)
-                        
-						<a href="{{route('front.details',$article->slug)}}" class="card py-[2px]">
-							<div class="rounded-[20px] border border-[#EEF0F7] p-[14px] flex items-center gap-4 hover:ring-2 hover:ring-[#FF6B18] transition-all duration-300">
-								<div class="w-[130px] h-[100px] flex shrink-0 rounded-[20px] overflow-hidden">
-									<img src="{{Storage::url($article->thumbnail)}}" class="object-cover w-full h-full" alt="thumbnail" />
-								</div>
-								<div class="flex flex-col justify-center-center gap-[6px]">
-									<h3 class="font-bold text-lg leading-[27px]">
-                                    {{substr($article->name,0,50)}}{{strlen(string: $article->name)>50?'...':''}}
-                                </h3>
-									<p class="text-sm leading-[21px] text-[#A3A6AE]">
-                                        
-                                    {{$article->created_at->format('M d,Y ')}}
-
-                                    </p>
-								</div>
-							</div>
-						</a>
-
-                    @empty
-                    <p>No entertainment articles found</p>
-                    @endforelse
-                
+				@else
+					<div class="featured-news-card relative h-[424px] w-[calc(100%-500px)] flex-1 rounded-[20px] overflow-hidden bg-gray-300 justify-center items-center flex">
+						<p class="text-gray-600">Belum ada artikel unggulan</p>
 					</div>
-					<div class="sticky z-10 bottom-0 w-full h-[100px] bg-gradient-to-b from-[rgba(255,255,255,0.19)] to-[rgba(255,255,255,1)]"></div>
-				</div>
-			</div>
-		</section>
-		<section id="Latest-business" class="max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-[70px]">
-			<div class="flex justify-between items-center">
-				<h2 class="font-bold text-[26px] leading-[39px]">
-					Latest For You <br />
-					in Business
-				</h2>
-			</div>
-			<div class="flex justify-between items-center h-fit">
-						@if ($business_featured_articles && $business_featured_articles->thumbnail)
-							<div class="featured-news-card relative w-full h-[424px] flex flex-1 rounded-[20px] overflow-hidden">
-								<img src="{{ Storage::url($business_featured_articles->thumbnail) }}" class="thumbnail absolute w-full h-full object-cover" alt="icon" />
-								<div class="w-full h-full bg-gradient-to-b from-[rgba(0,0,0,0)] to-[rgba(0,0,0,0.9)] absolute z-10"></div>
-								<div class="card-detail w-full flex items-end p-[30px] relative z-20">
-									<div class="flex flex-col gap-[10px]">
-										<p class="text-white">Featured</p>
-										<a href="{{ route('article.detail', $business_featured_articles->slug ?? '#') }}"
-											class="font-bold text-[30px] leading-[36px] text-white hover:underline transition-all duration-300">
-											{{ $business_featured_articles->name ?? '-' }}
-										</a>
-										<p class="text-white">
-											{{ $business_featured_articles->created_at?->format('M d, Y') ?? '-' }}
+				@endif
+
+				<!-- Right side: List -->
+				<div class="h-[424px] w-[455px] px-5 overflow-y-scroll overflow-x-hidden relative custom-scrollbar flex-shrink-0">
+					<div class="flex flex-col gap-5">
+						@forelse($entertainment_articles as $article)
+							<a href="{{route('front.details',$article->slug)}}" class="card py-[2px]">
+								<div class="rounded-[20px] border border-[#EEF0F7] p-[14px] flex items-center gap-4 hover:ring-2 hover:ring-[#FF6B18] transition-all duration-300">
+									<div class="w-[130px] h-[100px] flex shrink-0 rounded-[20px] overflow-hidden">
+										<img src="{{Storage::url($article->thumbnail)}}" class="object-cover w-full h-full" alt="thumbnail" />
+									</div>
+									<div class="flex flex-col justify-center gap-[6px]">
+										<h3 class="font-bold text-lg leading-[27px]">
+											{{substr($article->name,0,50)}}{{strlen(string: $article->name)>50?'...':''}}
+										</h3>
+										<p class="text-sm leading-[21px] text-[#A3A6AE]">
+											{{$article->created_at->format('M d, Y')}}
 										</p>
 									</div>
 								</div>
-							</div>
-						@else
-							<div class="featured-news-card relative w-full h-[424px] flex flex-1 rounded-[20px] overflow-hidden bg-gray-300 justify-center items-center">
-								<p class="text-gray-600">Belum ada artikel unggulan</p>
-							</div>
-						@endif
-					</div>
-				<div class="h-[424px] w-fit px-5 overflow-y-scroll overflow-x-hidden relative custom-scrollbar">
-					<div class="w-[455px] flex flex-col gap-5 shrink-0">
-                        @forelse($business_articles as $article)
-						<a href="{{route('front.details',$article->slug)}}" class="card py-[2px]">
-							<div class="rounded-[20px] border border-[#EEF0F7] p-[14px] flex items-center gap-4 hover:ring-2 hover:ring-[#FF6B18] transition-all duration-300">
-								<div class="w-[130px] h-[100px] flex shrink-0 rounded-[20px] overflow-hidden">
-									<img src="{{Storage::url($article->thumbnail)}}" class="object-cover w-full h-full" alt="thumbnail" />
-								</div>
-								<div class="flex flex-col justify-center-center gap-[6px]">
-									<h3 class="font-bold text-lg leading-[27px]">
-                                    {{substr($article->name,0,50)}}{{strlen($article->name)>50?'...':''}}
-
-                                    </h3>
-									<p class="text-sm leading-[21px] text-[#A3A6AE]">{{$article->created_at->format('M d,Y ')}}</p>
-								</div>
-							</div>
-						</a>
-                        @empty
-                        <p>No business articles found</p>
-                        @endforelse
+							</a>
+						@empty
+							<p>No entertainment articles found</p>
+						@endforelse
 					</div>
 					<div class="sticky z-10 bottom-0 w-full h-[100px] bg-gradient-to-b from-[rgba(255,255,255,0.19)] to-[rgba(255,255,255,1)]"></div>
 				</div>
 			</div>
 		</section>
-		<section id="Latest-automotive" class="max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-[70px]">
+		<section id="Latest-politik" class="max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-[70px]">
 			<div class="flex justify-between items-center">
 				<h2 class="font-bold text-[26px] leading-[39px]">
 					Latest For You <br />
-					in Automotive
+					in politik
 				</h2>
 			</div>
-			<div class="flex justify-between items-center h-fit">
-						@if ($automotive_featured_articles && $automotive_featured_articles->thumbnail)
-							<div class="featured-news-card relative w-full h-[424px] flex flex-1 rounded-[20px] overflow-hidden">
-								<img src="{{ Storage::url($automotive_featured_articles->thumbnail) }}" class="thumbnail absolute w-full h-full object-cover" alt="icon" />
-								<div class="w-full h-full bg-gradient-to-b from-[rgba(0,0,0,0)] to-[rgba(0,0,0,0.9)] absolute z-10"></div>
-								<div class="card-detail w-full flex items-end p-[30px] relative z-20">
-									<div class="flex flex-col gap-[10px]">
-										<p class="text-white">Featured</p>
-										<a href="{{ route('article.detail', $automotive_featured_articles->slug ?? '#') }}"
-											class="font-bold text-[30px] leading-[36px] text-white hover:underline transition-all duration-300">
-											{{ $automotive_featured_articles->name ?? '-' }}
-										</a>
-										<p class="text-white">
-											{{ $automotive_featured_articles->created_at?->format('M d, Y') ?? '-' }}
-										</p>
+			<div class="flex gap-6 h-fit">
+				<!-- Left side: Featured Card -->
+				@if ($politik_featured_articles && $politik_featured_articles->thumbnail)
+					<div class="featured-news-card relative h-[424px] w-[calc(100%-500px)] flex-1 rounded-[20px] overflow-hidden">
+						<img src="{{ Storage::url($politik_featured_articles->thumbnail) }}" class="thumbnail absolute w-full h-full object-cover" alt="icon" />
+						<div class="w-full h-full bg-gradient-to-b from-[rgba(0,0,0,0)] to-[rgba(0,0,0,0.9)] absolute z-10"></div>
+						<div class="card-detail w-full flex items-end p-[30px] relative z-20">
+							<div class="flex flex-col gap-[10px]">
+								<p class="text-white">Featured</p>
+								<a href="{{ route('front.details', $politik_featured_articles->slug ?? '#') }}" 
+									class="font-bold text-[30px] leading-[36px] text-white hover:underline transition-all duration-300 two-lines">
+									{{ $politik_featured_articles->name ?? '-' }}
+								</a>
+								<p class="text-white">
+									{{ $politik_featured_articles->created_at?->format('M d, Y') ?? '-' }}
+								</p>
+							</div>
+						</div>
+					</div>
+				@else
+					<div class="featured-news-card relative h-[424px] w-[calc(100%-500px)] flex-1 rounded-[20px] overflow-hidden bg-gray-300 justify-center items-center flex">
+						<p class="text-gray-600">Belum ada artikel unggulan</p>
+					</div>
+				@endif
+
+				<!-- Right side: List -->
+				<div class="h-[424px] w-[455px] px-5 overflow-y-scroll overflow-x-hidden relative custom-scrollbar flex-shrink-0">
+					<div class="flex flex-col gap-5">
+						@forelse($politik_articles as $article)
+							<a href="{{route('front.details',$article->slug)}}" class="card py-[2px]">
+								<div class="rounded-[20px] border border-[#EEF0F7] p-[14px] flex items-center gap-4 hover:ring-2 hover:ring-[#FF6B18] transition-all duration-300">
+									<div class="w-[130px] h-[100px] flex shrink-0 rounded-[20px] overflow-hidden">
+										<img src="{{Storage::url($article->thumbnail)}}" class="object-cover w-full h-full" alt="thumbnail" />
+									</div>
+									<div class="flex flex-col justify-center gap-[6px]">
+										<h3 class="font-bold text-lg leading-[27px]">
+											{{substr($article->name,0,50)}}{{strlen($article->name)>50?'...':''}}
+										</h3>
+										<p class="text-sm leading-[21px] text-[#A3A6AE]">{{$article->created_at->format('M d, Y')}}</p>
 									</div>
 								</div>
-							</div>
-						@else
-							<div class="featured-news-card relative w-full h-[424px] flex flex-1 rounded-[20px] overflow-hidden bg-gray-300 justify-center items-center">
-								<p class="text-gray-600">Belum ada artikel unggulan</p>
-							</div>
-						@endif
-					</div>
-				<div class="h-[424px] w-fit px-5 overflow-y-scroll overflow-x-hidden relative custom-scrollbar">
-					<div class="w-[455px] flex flex-col gap-5 shrink-0">
-                        @forelse($automotive_articles as $article)
-						<a href="{{route('front.details',$article->slug)}}" class="card py-[2px]">
-							<div class="rounded-[20px] border border-[#EEF0F7] p-[14px] flex items-center gap-4 hover:ring-2 hover:ring-[#FF6B18] transition-all duration-300">
-								<div class="w-[130px] h-[100px] flex shrink-0 rounded-[20px] overflow-hidden">
-									<img src="{{Storage::url($article->thumbnail)}}" class="object-cover w-full h-full" alt="thumbnail" />
-								</div>
-								<div class="flex flex-col justify-center-center gap-[6px]">
-									<h3 class="font-bold text-lg leading-[27px]">
-                                    {{substr($article->name,0,50)}}{{strlen(string: $article->name)>50?'...':''}}
-                                </h3>
-									<p class="text-sm leading-[21px] text-[#A3A6AE]">{{$article->created_at->format('M d, Y')}}</p>
-								</div>
-							</div>
-						</a>
-                        @empty
-                        <p>No automotive articles found</p>
-                        @endforelse
+							</a>
+						@empty
+							<p>No politik articles found</p>
+						@endforelse
 					</div>
 					<div class="sticky z-10 bottom-0 w-full h-[100px] bg-gradient-to-b from-[rgba(255,255,255,0.19)] to-[rgba(255,255,255,1)]"></div>
 				</div>
 			</div>
 		</section>
+		<section id="Latest-olahraga" class="max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-[70px]">
+			<div class="flex justify-between items-center">
+				<h2 class="font-bold text-[26px] leading-[39px]">
+					Latest For You <br />
+					in olahraga
+				</h2>
+			</div>
+			<div class="flex gap-6 h-fit">
+				<!-- Left side: Featured Card -->
+				@if ($olahraga_featured_articles && $olahraga_featured_articles->thumbnail)
+					<div class="featured-news-card relative h-[424px] w-[calc(100%-500px)] flex-1 rounded-[20px] overflow-hidden">
+						<img src="{{ Storage::url($olahraga_featured_articles->thumbnail) }}" class="thumbnail absolute w-full h-full object-cover" alt="icon" />
+						<div class="w-full h-full bg-gradient-to-b from-[rgba(0,0,0,0)] to-[rgba(0,0,0,0.9)] absolute z-10"></div>
+						<div class="card-detail w-full flex items-end p-[30px] relative z-20">
+							<div class="flex flex-col gap-[10px]">
+								<p class="text-white">Featured</p>
+								<a href="{{ route('front.details', $olahraga_featured_articles->slug ?? '#') }}" 
+									class="font-bold text-[30px] leading-[36px] text-white hover:underline transition-all duration-300 two-lines">
+									{{ $olahraga_featured_articles->name ?? '-' }}
+								</a>
+								<p class="text-white">
+									{{ $olahraga_featured_articles->created_at?->format('M d, Y') ?? '-' }}
+								</p>
+							</div>
+						</div>
+					</div>
+				@else
+					<div class="featured-news-card relative h-[424px] w-[calc(100%-500px)] flex-1 rounded-[20px] overflow-hidden bg-gray-300 justify-center items-center flex">
+						<p class="text-gray-600">Belum ada artikel unggulan</p>
+					</div>
+				@endif
 
-		
+				<!-- Right side: List -->
+				<div class="h-[424px] w-[455px] px-5 overflow-y-scroll overflow-x-hidden relative custom-scrollbar flex-shrink-0">
+					<div class="flex flex-col gap-5">
+						@forelse($olahraga_articles as $article)
+							<a href="{{route('front.details',$article->slug)}}" class="card py-[2px]">
+								<div class="rounded-[20px] border border-[#EEF0F7] p-[14px] flex items-center gap-4 hover:ring-2 hover:ring-[#FF6B18] transition-all duration-300">
+									<div class="w-[130px] h-[100px] flex shrink-0 rounded-[20px] overflow-hidden">
+										<img src="{{Storage::url($article->thumbnail)}}" class="object-cover w-full h-full" alt="thumbnail" />
+									</div>
+									<div class="flex flex-col justify-center gap-[6px]">
+										<h3 class="font-bold text-lg leading-[27px]">
+											{{substr($article->name,0,50)}}{{strlen(string: $article->name)>50?'...':''}}
+										</h3>
+										<p class="text-sm leading-[21px] text-[#A3A6AE]">{{$article->created_at->format('M d, Y')}}</p>
+									</div>
+								</div>
+							</a>
+						@empty
+							<p>No olahraga articles found</p>
+						@endforelse
 	</body>
 @endsection
 @push('after-styles')

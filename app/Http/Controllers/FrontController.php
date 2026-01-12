@@ -49,31 +49,31 @@ class FrontController extends Controller
         ->inRandomOrder()
         ->first();
         
-        $business_articles = ArticleNews::whereHas('category', function($query) {
-            $query->where('name', 'Business');
+        $politik_articles = ArticleNews::whereHas('category', function($query) {
+            $query->where('name', 'politik');
         })
         ->where('is_featured', 'not_featured')
         ->latest()
         ->take(6)
         ->get();
         
-        $business_featured_articles = ArticleNews::whereHas('category', function($query) {
-            $query->where('name', 'Business');
+        $politik_featured_articles = ArticleNews::whereHas('category', function($query) {
+            $query->where('name', 'politik');
         })
         ->where('is_featured', 'featured')
         ->inRandomOrder()
         ->first();
         
-        $automotive_articles = ArticleNews::whereHas('category', function($query) {
-            $query->where('name', 'Automotive');
+        $olahraga_articles = ArticleNews::whereHas('category', function($query) {
+            $query->where('name', 'olahraga');
         })
         ->where('is_featured', 'not_featured')
         ->latest()
         ->take(6)
         ->get();
         
-        $automotive_featured_articles = ArticleNews::whereHas('category', function($query) {
-            $query->where('name', 'Automotive');
+        $olahraga_featured_articles = ArticleNews::whereHas('category', function($query) {
+            $query->where('name', 'olahraga');
         })
         ->where('is_featured', 'featured')
         ->inRandomOrder()
@@ -82,10 +82,10 @@ class FrontController extends Controller
         $authors = Author::all();
 
         return view('front.index',compact(
-            'automotive_featured_articles',
-            'automotive_articles',
-            'business_featured_articles',
-            'business_articles',
+            'olahraga_featured_articles',
+            'olahraga_articles',
+            'politik_featured_articles',
+            'politik_articles',
             'entertainment_featured_articles',
             'entertainment_articles', 
             'categories','articles', 
